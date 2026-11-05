@@ -765,7 +765,7 @@ class Support_Hub extends Abstract_Module {
 			'product_name'    => $product->get_friendly_name(),
 			'product_version' => $product->get_version(),
 			'plan'            => self::plan( $product, $data ),
-			'license_status'  => (string) apply_filters( $product->get_key() . '_license_status', '' ),
+			'license_status'  => self::license_status( $product ),
 			'wp_version'      => (string) $wp_version,
 			'php_version'     => PHP_VERSION,
 			'locale'          => get_locale(),
@@ -786,6 +786,10 @@ class Support_Hub extends Abstract_Module {
 	 * The plan a message is tagged with: free, or pro with the price id when
 	 * the Licenser knows it.
 	 *
+	 * The license is read from the product itself, or from the pro addon it
+	 * names in its `Pro Slug` header when that addon is registered with the
+	 * SDK (see licensed_product()).
+	 *
 	 * @param Product  $product Product.
 	 * @param Metadata $data Product metadata.
 	 *
@@ -797,10 +801,45 @@ class Support_Hub extends Abstract_Module {
 		}
 		$price_id = - 1;
 		if ( class_exists( 'ThemeisleSDK\Modules\Licenser' ) ) {
-			$price_id = Licenser::plan( $product->get_basefile() );
+			$price_id = Licenser::plan( self::licensed_product( $product )->get_basefile() );
 		}
 
 		return $price_id > 0 ? 'pro-' . $price_id : 'pro';
+	}
+
+	/**
+	 * The license status for the site info, from the same product plan()
+	 * reads. Empty when it has no Licenser.
+	 *
+	 * @param Product $product Product.
+	 *
+	 * @return string
+	 */
+	public static function license_status( $product ) {
+		return (string) apply_filters( self::licensed_product( $product )->get_key() . '_license_status', '' );
+	}
+
+	/**
+	 * The product whose Licenser holds the license: the product itself when
+	 * it requires one, otherwise the registered product its `Pro Slug` header
+	 * names (a free plugin whose pro addon owns the license). The product
+	 * itself when neither applies.
+	 *
+	 * @param Product $product Product.
+	 *
+	 * @return Product
+	 */
+	public static function licensed_product( $product ) {
+		if ( $product->requires_license() ) {
+			return $product;
+		}
+		$pro_slug = $product->get_pro_slug();
+		$products = Loader::get_products();
+		if ( '' !== $pro_slug && isset( $products[ $pro_slug ] ) && $products[ $pro_slug ]->requires_license() ) {
+			return $products[ $pro_slug ];
+		}
+
+		return $product;
 	}
 
 	/**

@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'codeinwp/themeisle-sdk' => array(
-            'pretty_version' => '3.3.69',
-            'version' => '3.3.69.0',
-            'reference' => '5b3c3e45f3ff385172539d330797df95172a06a8',
+            'pretty_version' => '3.3.71',
+            'version' => '3.3.71.0',
+            'reference' => 'cd7acfc0b01b8d5712736aa3721d689591ced991',
             'type' => 'library',
             'install_path' => __DIR__ . '/../codeinwp/themeisle-sdk',
             'aliases' => array(),
