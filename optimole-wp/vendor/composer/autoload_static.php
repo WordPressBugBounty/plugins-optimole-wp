@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1c6cb28ea9cfac46761c17ca70f1a8d0
+class ComposerStaticInitfea9ed731d69e59f5089fa14a003e3e3
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -50,6 +50,7 @@ class ComposerStaticInit1c6cb28ea9cfac46761c17ca70f1a8d0
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'OptimoleWP\\BgOptimizer\\Lazyload' => __DIR__ . '/../..' . '/inc/v2/BgOptimizer/Lazyload.php',
+        'OptimoleWP\\Media\\UploadsPath' => __DIR__ . '/../..' . '/inc/v2/Media/UploadsPath.php',
         'OptimoleWP\\Offload\\ImageEditor' => __DIR__ . '/../..' . '/inc/v2/Offload/ImageEditor.php',
         'OptimoleWP\\Offload\\Loader' => __DIR__ . '/../..' . '/inc/v2/Offload/Loader.php',
         'OptimoleWP\\PageProfiler\\Profile' => __DIR__ . '/../..' . '/inc/v2/PageProfiler/Profile.php',
@@ -57,6 +58,7 @@ class ComposerStaticInit1c6cb28ea9cfac46761c17ca70f1a8d0
         'OptimoleWP\\PageProfiler\\Storage\\ObjectCache' => __DIR__ . '/../..' . '/inc/v2/PageProfiler/Storage/ObjectCache.php',
         'OptimoleWP\\PageProfiler\\Storage\\Transients' => __DIR__ . '/../..' . '/inc/v2/PageProfiler/Storage/Transients.php',
         'OptimoleWP\\Preload\\Links' => __DIR__ . '/../..' . '/inc/v2/Preload/Links.php',
+        'OptimoleWP\\RequestToken' => __DIR__ . '/../..' . '/inc/v2/RequestToken.php',
         'Optimole\\Sdk\\Exception\\BadMethodCallException' => __DIR__ . '/..' . '/codeinwp/optimole-sdk/src/Exception/BadMethodCallException.php',
         'Optimole\\Sdk\\Exception\\BadResponseException' => __DIR__ . '/..' . '/codeinwp/optimole-sdk/src/Exception/BadResponseException.php',
         'Optimole\\Sdk\\Exception\\DashboardApiException' => __DIR__ . '/..' . '/codeinwp/optimole-sdk/src/Exception/DashboardApiException.php',
@@ -117,9 +119,9 @@ class ComposerStaticInit1c6cb28ea9cfac46761c17ca70f1a8d0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1c6cb28ea9cfac46761c17ca70f1a8d0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1c6cb28ea9cfac46761c17ca70f1a8d0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit1c6cb28ea9cfac46761c17ca70f1a8d0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfea9ed731d69e59f5089fa14a003e3e3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfea9ed731d69e59f5089fa14a003e3e3::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitfea9ed731d69e59f5089fa14a003e3e3::$classMap;
 
         }, null, ClassLoader::class);
     }
